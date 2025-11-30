@@ -22,8 +22,8 @@ export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({
   className,
 }) => {
   const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
-  const intersectionRef = React.useRef(null);
-  const intersection = useIntersection(intersectionRef, {
+  const intersectionRef = React.useRef<HTMLDivElement>(null);
+  const intersection = useIntersection(intersectionRef as React.RefObject<HTMLElement>, {
     threshold: 0.5,
   });
 
@@ -31,7 +31,7 @@ export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({
     if (intersection?.isIntersecting) {
      setActiveCategoryId(categoryId);
     }
-  },[categoryId, intersection?.isIntersecting, title])
+  },[categoryId, intersection?.isIntersecting, setActiveCategoryId])
 
   return (
     <div className={className} id={title} ref={intersectionRef}>
@@ -44,6 +44,7 @@ export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({
             name={product.name}
             imageUrl={product.imageUrl}
             price={product.items[0].price}
+            ingredients={product.ingredients}
           />
         ))}
       </div>
