@@ -2,7 +2,7 @@ import { Container, SortPopup, Title, TopBar } from '@/components/shared'
 import { Filters } from '@/components/shared/Filters'
 import { ProductsGroupList } from '@/components/shared/ProductsGroupList'
 import React from 'react'
-import { prisma } from '../../prisma/prisma'
+import { prisma } from '../../../prisma/prisma'
 
 export default async function page() {
 
