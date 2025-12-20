@@ -81,7 +81,7 @@ model Cart {
 }
 model CartItem {
   id        String   @id @default(uuid())
-  quantity  Int
+  quantity  Int @default(1)
   cartId    Int
   productItemId Int
 
