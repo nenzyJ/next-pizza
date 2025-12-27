@@ -37,7 +37,7 @@ export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({
   }, [categoryId, intersection?.isIntersecting, setActiveCategoryId]);
 
   return (
-    <div className={className} id={title} ref={intersectionRef}>
+    <div className={cn("scroll-m-6",className)} id={title} ref={intersectionRef}>
       <Title text={title} size="lg" className="font-extrabold mb-5" />
       <div className={cn("grid grid-cols-3 gap-[50px] ", listClassName)}>
         {products.map((product, i) => (
