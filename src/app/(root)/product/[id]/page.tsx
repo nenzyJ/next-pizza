@@ -34,7 +34,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="w-[490px] bg-[#FCFCFC] p-7">
             <Title text={product.name} size="md" className="font-extrabold mb-1"/>
             <p className="text-gray-400">Lorem ipsum dolar</p>
-            <SelectorSizes selectedValue="3" items={[
+            <SelectorSizes value="3" items={[
                 {
                     name: 'Small',
                     value: '1',
