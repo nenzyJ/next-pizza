@@ -21,12 +21,12 @@ export const Header: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <header className={cn("border  ")}>
+    <header className={cn("border-b  ")}>
       <Container className="flex items-center justify-between py-8">
         {/* Left side */}
         <Link href="/">
           <div className="flex items-center gap-4">
-            <Image src="/logo.png" alt="Logo" width={35} height={35} />
+            <Image src="/pizza-logo.svg" alt="Logo" width={35} height={35} />
             <div>
               <h1 className="text-2xl uppercase font-black">Next Pizza</h1>
               <p className="text-sm text-gray-400 leading-3">
@@ -35,9 +35,10 @@ export const Header: React.FC<Props> = ({
             </div>
           </div>
         </Link>
-        <div className="mx-10 flex-1">
+
+        {hasSearch && <div className="mx-10 flex-1">
           <HInput />
-        </div>
+        </div>}
 
         <div className="flex gap-4 items-center">
           <Button
@@ -47,9 +48,9 @@ export const Header: React.FC<Props> = ({
             <User size={16} />
             Sign In
           </Button>
-        
-            <CartButton/>
-          
+
+            {hasCart && <CartButton />}
+
         </div>
       </Container>
     </header>

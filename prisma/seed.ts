@@ -68,9 +68,9 @@ async function up() {
 
   const pizza1 = await prisma.product.create({
     data: {
-      name: 'Пепперони фреш',
+      name: 'Pepperoni Fresh',
       imageUrl:
-        'https://media.dodostatic.net/image/r:233x233/11EE7D61304FAF5A98A6958F2BB2D260.webp',
+        '/Pepperoni Fresh.webp',
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(0, 5).map((ing) => ({ id: ing.id })),
@@ -80,9 +80,9 @@ async function up() {
 
   const pizza2 = await prisma.product.create({
     data: {
-      name: 'Сырная',
+      name: 'Cheese Pizza',
       imageUrl:
-        'https://media.dodostatic.net/image/r:233x233/11EE7D610CF7E265B7C72BE5AE757CA7.webp',
+        '/Cheese Pizza.webp',
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(5, 10).map((ing) => ({ id: ing.id })),
@@ -92,9 +92,9 @@ async function up() {
 
   const pizza3 = await prisma.product.create({
     data: {
-      name: 'Чоризо фреш',
+      name: 'Chorizo Fresh',
       imageUrl:
-        'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.webp',
+        '/Chorizo Fresh.webp',
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(10, 40).map((ing) => ({ id: ing.id })),

@@ -4,11 +4,13 @@ import {
   PizzaSize,
   PizzaType,
 } from "../../shared/constants/pizza";
+import { StateCartItem } from "./get-cart-details";
 
 export const getCartItemDetails = (
-  pizzaType: PizzaType,
-  pizzaSize: PizzaSize,
-  ingredients: Ingredient[]
+  ingredients: StateCartItem["ingredients"],
+  pizzaType?: PizzaType,
+  pizzaSize?: PizzaSize,
+  
 ) => {
   const details = [];
   if (pizzaSize && pizzaType) {
