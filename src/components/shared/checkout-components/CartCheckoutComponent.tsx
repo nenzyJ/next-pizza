@@ -2,18 +2,17 @@ import { getCartItemDetails } from "@/lib/get-cart-item-details";
 import { CheckoutItem } from "../CheckOutItem";
 import { WhiteBlock } from "../WhiteBlock";
 import { PizzaSize, PizzaType } from "../../../../shared/constants/pizza";
-import { removeCartItem } from "../../../../shared/services/cart";
 import { StateCartItem } from "@/lib/get-cart-details";
 
 
 interface Props {
-    
     items: StateCartItem[];
     onClickCountButton: (id: string, quantity: number, type: "plus" | "minus") => void;
+    removeCartItem: (id: string) => void;
     className?: string;
 }
 
-export const CartCheckoutComponent: React.FC<Props> = ({ items, onClickCountButton, className }) => {
+export const CartCheckoutComponent: React.FC<Props> = ({ items, onClickCountButton, removeCartItem, className }) => {
     return (
         <WhiteBlock title="1. Cart" className={className} contentClassName="">
             <div className="flex flex-col gap-5 ">

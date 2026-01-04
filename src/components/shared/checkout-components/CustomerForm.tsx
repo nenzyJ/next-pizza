@@ -13,22 +13,22 @@ export const CustomerForm: React.FC<Props> = ({ className }) => {
             className={className}
             contentClassName=""
           >
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
               <FormInput label=""
                 name="firstName"
-                className="text-base"
+                className="text-sm md:text-base"
                 placeholder="First Name"
               />
               <FormInput label=""
                 name="lastName"
-                className="text-base"
+                className="text-sm md:text-base"
                 placeholder="Last Name"
               />
-              <FormInput label="" name="email" className="text-base" placeholder="Email" />
+              <FormInput label="" name="email" className="text-sm md:text-base" placeholder="Email" />
               <FormInput
                 label=""
                 name="phone"
-                className="text-base"
+                className="text-sm md:text-base"
                 placeholder="Phone"
               />
             </div>

@@ -81,17 +81,18 @@ export default function page() {
   const totalPrice = totalAmount + taxPrice + DELIVERY_FEE;
 
   return (
-    <Container className="mt-10">
-      <Title text="Checkout" className="font-extrabold mb-8 text-[36px]" />
+    <Container className="mt-5 md:mt-10">
+      <Title text="Checkout" className="font-extrabold mb-4 md:mb-8 text-2xl md:text-[36px]" />
 
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="flex gap-40">
+          <div className="flex flex-col lg:flex-row gap-6 md:gap-10 lg:gap-40">
             {/* L */}
-            <div className="flex flex-col gap-5 flex-1 mb-20">
+            <div className="flex flex-col gap-4 md:gap-5 flex-1 mb-10 md:mb-20">
               <CartCheckoutComponent
                 items={items}
                 onClickCountButton={onClickCountButton}
+                removeCartItem={removeCartItem}
               />
 
               <CustomerForm />
@@ -100,11 +101,11 @@ export default function page() {
             </div>
 
             {/* R */}
-            <div className="w-[450px]">
-              <WhiteBlock className="p-6 sticky top-4">
+            <div className="w-full lg:w-[450px]">
+              <WhiteBlock className="p-4 md:p-6 lg:sticky lg:top-4">
                 <div className="flex flex-col gap-1">
-                  <span className="text-xl">Total:</span>
-                  <span className="text-[34px] font-extrabold">
+                  <span className="text-lg md:text-xl">Total:</span>
+                  <span className="text-2xl md:text-[34px] font-extrabold">
                     {totalPrice}
                   </span>
                 </div>
@@ -139,10 +140,10 @@ export default function page() {
 
                 <Button
                   type="submit"
-                  className="w-full h-14 rounded-2xl mt-6 text-base font-bold flex items-center justify-center"
+                  className="w-full h-12 md:h-14 rounded-2xl mt-4 md:mt-6 text-sm md:text-base font-bold flex items-center justify-center"
                 >
                   Place Order
-                  <ArrowRight className="w-5 ml-2" />
+                  <ArrowRight className="w-4 md:w-5 ml-2" />
                 </Button>
               </WhiteBlock>
             </div>
