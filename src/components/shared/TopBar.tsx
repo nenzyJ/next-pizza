@@ -14,13 +14,15 @@ export const TopBar: React.FC<Props> = ({ categories ,className }) => {
   return (
     <div
       className={cn(
-        "sticky top-0 bg-white shadow-lg py-5 shadow-black/5 z-10",
+        "sticky top-0 bg-white shadow-lg py-3 md:py-5 shadow-black/5 z-10",
         className
       )}
     >
-      <Container className="flex items-center justify-between">
+      <Container className="flex items-center justify-between gap-4">
         <Categories items={categories} />
-        <SortPopup />
+        <div className="hidden md:block">
+          <SortPopup />
+        </div>
       </Container>
     </div>
   );

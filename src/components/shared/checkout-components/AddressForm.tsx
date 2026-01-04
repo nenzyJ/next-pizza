@@ -43,9 +43,9 @@ export const AddressForm: React.FC<Props> = ({ className }) => {
             className=""
             contentClassName=""
           >
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4 md:gap-5">
               <div className="space-y-3">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between flex-wrap gap-2">
                   <label className="text-sm font-medium">
                     {showMap ? "Selected Address" : "Address"}
                   </label>
@@ -54,16 +54,16 @@ export const AddressForm: React.FC<Props> = ({ className }) => {
                     variant="outline"
                     size="sm"
                     onClick={() => setShowMap(!showMap)}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 text-xs md:text-sm"
                   >
                     {showMap ? (
                       <>
-                        <Edit3 className="w-4 h-4" />
+                        <Edit3 className="w-3 h-3 md:w-4 md:h-4" />
                         Enter Manually
                       </>
                     ) : (
                       <>
-                        <MapPin className="w-4 h-4" />
+                        <MapPin className="w-3 h-3 md:w-4 md:h-4" />
                         Select on Map
                       </>
                     )}
@@ -74,7 +74,7 @@ export const AddressForm: React.FC<Props> = ({ className }) => {
                   <FormInput
                     label=""
                     name="address"
-                    className="text-base"
+                    className="text-sm md:text-base"
                     placeholder="Enter your address"
                   />
                 )}
@@ -86,8 +86,8 @@ export const AddressForm: React.FC<Props> = ({ className }) => {
                     />
                     {addressValue && (
                       <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
-                        <p className="text-sm text-gray-600 mb-1">Selected Address:</p>
-                        <p className="text-sm font-medium">{addressValue}</p>
+                        <p className="text-xs md:text-sm text-gray-600 mb-1">Selected Address:</p>
+                        <p className="text-xs md:text-sm font-medium">{addressValue}</p>
                       </div>
                     )}
                   </div>
@@ -98,7 +98,7 @@ export const AddressForm: React.FC<Props> = ({ className }) => {
                {...register("comment")}
                 placeholder="Comment to order"
                 rows={5}
-                className="text-base"
+                className="text-sm md:text-base"
               />
             </div>
           </WhiteBlock>

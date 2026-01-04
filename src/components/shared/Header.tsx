@@ -21,32 +21,32 @@ export const Header: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <header className={cn("border-b  ")}>
-      <Container className="flex items-center justify-between py-8">
+    <header className={cn("border-b")}>
+      <Container className="flex items-center justify-between py-4 md:py-8">
         {/* Left side */}
         <Link href="/">
-          <div className="flex items-center gap-4">
-            <Image src="/pizza-logo.svg" alt="Logo" width={35} height={35} />
+          <div className="flex items-center gap-2 md:gap-4">
+            <Image src="/pizza-logo.svg" alt="Logo" width={28} height={28} className="md:w-[35px] md:h-[35px]" />
             <div>
-              <h1 className="text-2xl uppercase font-black">Dovas Pizza</h1>
-              <p className="text-sm text-gray-400 leading-3">
+              <h1 className="text-lg md:text-2xl uppercase font-black">Dovas Pizza</h1>
+              <p className="text-xs md:text-sm text-gray-400 leading-3 hidden sm:block">
                 It doesn't get any tastier than this.
               </p>
             </div>
           </div>
         </Link>
 
-        {hasSearch && <div className="mx-10 flex-1">
+        {hasSearch && <div className="hidden md:flex mx-10 flex-1">
           <HInput />
         </div>}
 
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-2 md:gap-4 items-center">
           <Button
             variant={"outline"}
             className="flex items-center gap-1 cursor-pointer rounded-2xl"
           >
             <User size={16} />
-            Sign In
+            <span className="hidden sm:inline">Sign In</span>
           </Button>
 
             {hasCart && <CartButton />}

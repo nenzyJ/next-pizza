@@ -10,7 +10,7 @@ export default async function page({searchParams}: {searchParams: Promise<GetSea
   const categories = await findPizzas(params);
   return (
     <div>
-      <Container className="mt-10">
+      <Container className="mt-5 md:mt-10">
         <Title text="All Pizzas" size="lg" className="font-extrabold" />
       </Container>
       <TopBar
@@ -18,10 +18,10 @@ export default async function page({searchParams}: {searchParams: Promise<GetSea
           (category) => category.products.length > 0
         )}
       />
-      <Container className="mt-10">
-        <div className="flex gap-[80px]">
-          {/* Filter */}
-          <div className="w-[250px]">
+      <Container className="mt-5 md:mt-10">
+        <div className="flex gap-8 lg:gap-[80px]">
+          {/* Filter - Hidden on mobile */}
+          <div className="hidden lg:block w-[250px]">
             <Suspense>
               <Filters />
             </Suspense>
@@ -29,7 +29,7 @@ export default async function page({searchParams}: {searchParams: Promise<GetSea
 
           {/* product list */}
           <div className="flex-1">
-            <div className="flex flex-col gap-16">
+            <div className="flex flex-col gap-8 md:gap-16">
               {/* <ProductList/> */}
               {categories.map(
                 (category) =>
