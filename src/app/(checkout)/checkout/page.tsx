@@ -92,6 +92,7 @@ export default function page() {
               <CartCheckoutComponent
                 items={items}
                 onClickCountButton={onClickCountButton}
+                removeCartItem={removeCartItem}
               />
 
               <CustomerForm />
