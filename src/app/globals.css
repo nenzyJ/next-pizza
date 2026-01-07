@@ -173,3 +173,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+#nprogress .bar {
+  @apply bg-primary;
+  background-color: theme('colors.primary') !important;
+}
+#nprogress .peg {
+  @apply shadow-md shadow-primary;
+}
+
+#nprogress .spinner-icon {
+  @apply border-t-primary border-l-primary;
+}

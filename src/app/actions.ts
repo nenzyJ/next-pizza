@@ -2,10 +2,12 @@
 
 import { checkoutSchemaType } from "@/components/shared/checkout-components/schema/checkout-schema";
 import { prisma } from "../../prisma/prisma";
-import { OrderStatus } from "@prisma/client";
+import { OrderStatus, Prisma } from "@prisma/client";
 import { cookies } from "next/headers";
 import { sendEmail } from "@/lib/send-email";
 import { EmailTemplate } from "@/components/shared/email-template/PayOrder";
+import { getUserSession } from "@/lib/get-user-session";
+import { hashSync } from "bcrypt";
 
 export async function submitOrder(data: checkoutSchemaType) {
   // console.log("Order submitted:", data);
@@ -92,6 +94,27 @@ export async function submitOrder(data: checkoutSchemaType) {
     await sendEmail(data.email, 'DOVAS Pizza - Order Confirmation #' + order.id, EmailTemplate({ orderId: order.id, totalAmount: order.totalAmount, paymentUrl: 'https://nextjs.org/' }))
   } catch (error) {
     console.log("Error submitting order:", error);
+  }
+}
+
+export async function updateUserInfo(body: Prisma.UserCreateInput) {
+  try {
+    const currentUser = await getUserSession();
+    if(!currentUser){
+      throw new Error('User doesn`t exist')
+    }
+    await prisma.user.update({
+      where: {
+        id: Number(currentUser.id)
+      },
+      data: {
+        fullName: body.fullName,
+        email: body.email,
+        password: hashSync(body.password, 10),
+      }
+    })
+  } catch (error) {
+    console.error('Error [UPDATE_USER]', error)
   }
 }
 
