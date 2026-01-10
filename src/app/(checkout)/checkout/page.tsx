@@ -23,6 +23,8 @@ import {
 } from "@/components/shared/checkout-components/schema/checkout-schema";
 import { submitOrder } from "@/app/actions";
 import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
+import { Api } from "../../../../shared/services/api-client";
 
 const TAX = 15;
 const DELIVERY_FEE = 5;
@@ -31,11 +33,13 @@ export default function page() {
   const [submitting, setSubmitting] = React.useState(false);
   const { totalAmount, items, updateItemQuantity, removeCartItem } = useCart();
 
+  const { data: session } = useSession();
+
   const form = useForm<checkoutSchemaType>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
       email: "",
-      firstName: "",
+      firstName: session?.user?.name || '',
       lastName: "",
       phone: "",
       address: "",
@@ -43,9 +47,25 @@ export default function page() {
     },
   });
 
+  React.useEffect(() => {
+    async function fetchUserInfo() {
+       const data = await Api.auth.getMe();
+      const [firstName, lastName] = data.fullName.split(" ");
+     
+
+      form.setValue("firstName", firstName);
+      form.setValue("lastName", lastName);
+      form.setValue("email", data.email);
+
+      console.log(data);
+    }
+
+    if(session) {
+      fetchUserInfo();
+    }
+  }, [session]);
+
   const onSubmit = async(data: checkoutSchemaType) => {
-    // console.log("Form submitted with data:", data);
-    // submitOrder(data);
     try {
       setSubmitting(true);
       const url = await submitOrder(data) as string | undefined;
