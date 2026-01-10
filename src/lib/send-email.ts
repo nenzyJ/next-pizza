@@ -5,7 +5,7 @@ export const sendEmail = async (to: string, subject: string, template: React.Rea
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     const { data, error } = await resend.emails.send({
-      from: 'Acme <onboarding@resend.dev>',
+      from: 'noreply@yourdomain.com',
       to: [to],
       subject: subject,
       react: template,

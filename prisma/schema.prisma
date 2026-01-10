@@ -120,7 +120,7 @@ model Order {
 model VerififcationCode {
   id        Int      @id @default(autoincrement())
 
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId   Int @unique
   code      String
 
