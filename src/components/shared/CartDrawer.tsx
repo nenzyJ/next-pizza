@@ -60,12 +60,18 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
               !totalAmount && "justify-center"
             )}
           >
-            {totalAmount > 0 && (
+            {totalAmount > 0 ? (
               <SheetHeader>
                 <SheetTitle>
                   In cart <span className="font-bold">{items.length}</span>
                 </SheetTitle>
               </SheetHeader>
+            ) : (
+                <SheetHeader className="hidden">
+                    <SheetTitle>
+                        Empty Cart
+                    </SheetTitle>
+                </SheetHeader>
             )}
             {/* mb-2 */}
 

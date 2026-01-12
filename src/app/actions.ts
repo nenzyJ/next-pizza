@@ -68,7 +68,7 @@ export async function submitOrder(data: checkoutSchemaType) {
         email: data.email,
         phone: data.phone,
         address: data.address,
-        comment: data.comment,
+        comment: data.comment + " (Payment: " + data.paymentMethod + ")",
         totalAmount: userCart.totalAmount,
         status: OrderStatus.PENDING,
         items: JSON.stringify(userCart.cartItems),
@@ -92,7 +92,13 @@ export async function submitOrder(data: checkoutSchemaType) {
 
     // TODO: payment methods, send email, etc.
 
-    await sendEmail(data.email, 'DOVAS Pizza - Order Confirmation #' + order.id, EmailTemplate({ orderId: order.id, totalAmount: order.totalAmount, paymentUrl: 'https://nextjs.org/' }))
+    try {
+      await sendEmail(data.email, 'DOVAS Pizza - Order Confirmation #' + order.id, EmailTemplate({ orderId: order.id, totalAmount: order.totalAmount, paymentUrl: 'https://nextjs.org/' }));
+    } catch (e) {
+      console.log("Error sending email:", e);
+    }
+
+    return '/';
   } catch (error) {
     console.log("Error submitting order:", error);
   }

@@ -7,6 +7,7 @@ export const checkoutSchema = z.object({
     phone: z.string().min(10, 'Phone number must be at least 10 characters long'),
     address: z.string().min(5, 'Address must be at least 5 characters long'),
     comment: z.string().optional(),
+    paymentMethod: z.enum(['card', 'cash']),
 }); 
 
 export type checkoutSchemaType = z.infer<typeof checkoutSchema>;
