@@ -21,6 +21,7 @@ import {
   checkoutSchema,
   checkoutSchemaType,
 } from "@/components/shared/checkout-components/schema/checkout-schema";
+import { PaymentMethod } from "@/components/shared/checkout-components/PaymentMethod";
 import { submitOrder } from "@/app/actions";
 import toast from "react-hot-toast";
 import { useSession } from "next-auth/react";
@@ -118,6 +119,8 @@ export default function page() {
               <CustomerForm />
 
               <AddressForm />
+
+              <PaymentMethod />
             </div>
 
             {/* R */}

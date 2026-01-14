@@ -9,25 +9,9 @@ import { EmailTemplate } from "@/components/shared/email-template/PayOrder";
 import { getUserSession } from "@/lib/get-user-session";
 import { hashSync } from "bcrypt";
 import { VerificationUserTemplate } from "@/components/shared/email-template/verification-user";
+import { stripe } from "@/lib/stripe";
 
-export async function submitOrder(data: checkoutSchemaType) {
-  // console.log("Order submitted:", data);
-
-  // const token  = '1213'
-
-  // await prisma.order.create({
-  //     data: {
-  //         token: token,
-  //         totalAmount: 400 ,
-  //         status: OrderStatus.PENDING,
-  //         items: [],
-  //         fullName: data.firstName + " " + data.lastName,
-  //         email: data.email,
-  //         phone: data.phone,
-  //         address: data.address,
-  //         comment: data.comment,
-  //     }
-  // })
+export async function submitOrder(data: checkoutSchemaType) { 
 
   try {
     const cookieStore = await cookies();
@@ -68,7 +52,7 @@ export async function submitOrder(data: checkoutSchemaType) {
         email: data.email,
         phone: data.phone,
         address: data.address,
-        comment: data.comment,
+        comment: data.comment + " (Payment: " + data.paymentMethod + ")",
         totalAmount: userCart.totalAmount,
         status: OrderStatus.PENDING,
         items: JSON.stringify(userCart.cartItems),
@@ -91,10 +75,60 @@ export async function submitOrder(data: checkoutSchemaType) {
     });
 
     // TODO: payment methods, send email, etc.
+    
+    console.log("Order created:", order.id, "Payment method:", data.paymentMethod);
 
-    await sendEmail(data.email, 'DOVAS Pizza - Order Confirmation #' + order.id, EmailTemplate({ orderId: order.id, totalAmount: order.totalAmount, paymentUrl: 'https://nextjs.org/' }))
+    if (data.paymentMethod === 'card') {
+      if (!process.env.STRIPE_SECRET_KEY) {
+        console.error("STRIPE_SECRET_KEY is missing");
+        throw new Error('Stripe secret key is not defined');
+      }
+      
+      console.log("Creating Stripe session for order:", order.id);
+
+      const successUrl = process.env.NEXTAUTH_URL ? `${process.env.NEXTAUTH_URL}/checkout/success` : 'http://localhost:3000/checkout/success';
+      const cancelUrl = process.env.NEXTAUTH_URL ? `${process.env.NEXTAUTH_URL}/?paid=false` : 'http://localhost:3000/?paid=false';
+      
+      console.log("Success URL:", successUrl);
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [
+            {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: 'Order #' + order.id,
+                    },
+                    unit_amount: Math.round(order.totalAmount * 100), // Stripe expects amount in cents
+                },
+                quantity: 1,
+            },
+        ],
+        mode: 'payment',
+        success_url: successUrl,
+        cancel_url: cancelUrl,
+        metadata: {
+            order_id: order.id,
+        },
+      });
+
+      console.log("Stripe session created:", session.url);
+      return session.url;
+    }
+
+    try {
+      await sendEmail(data.email, 'DOVAS Pizza - Order Confirmation #' + order.id, EmailTemplate({ orderId: order.id, totalAmount: order.totalAmount, paymentUrl: 'https://nextjs.org/' }));
+    } catch (e) {
+      console.log("Error sending email:", e);
+    }
+
+    return '/';
   } catch (error) {
     console.log("Error submitting order:", error);
+    // Rethrow error so frontend can see it? Or return a specific error code?
+    // Since page.tsx is catching, throwing is better than swallowing if we want frontend toast
+    throw error;
   }
 }
 
