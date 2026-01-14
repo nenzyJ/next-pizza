@@ -24,7 +24,7 @@ const generateProductItem = ({
 }) => {
   return {
     productId,
-    price: Math.floor(randomDecimalNumber(190, 600)),
+    price: Math.round(((size ? (size * 10) : 190) + (pizzaType === 2 ? 20 : 0)) / 40),
     pizzaType,
     size,
   } as Prisma.ProductItemUncheckedCreateInput;
@@ -59,7 +59,7 @@ async function up() {
 
   console.log('Creating ingredients...');
   await prisma.ingredient.createMany({
-    data: _ingredients,
+    data: _ingredients.map((item) => ({ ...item, price: Math.round(item.price / 40) })),
   });
 
   await prisma.product.createMany({

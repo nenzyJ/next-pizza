@@ -78,3 +78,27 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export async function GET(req: NextRequest) {
+  try {
+    let token = req.cookies.get("cartToken")?.value;
+
+    if (!token) {
+      token = crypto.randomUUID();
+    }
+
+    const userCart = await findOrCreateCart(token);
+
+    const updatedCart = await updateCartTotalAmount(token);
+
+    const resp = NextResponse.json(updatedCart);
+    resp.cookies.set("cartToken", token);
+    return resp;
+  } catch (error) {
+    console.log("[CART_GET] Server error", error);
+    return NextResponse.json(
+      { message: "Не удалось получить корзину" },
+      { status: 500 }
+    );
+  }
+}
