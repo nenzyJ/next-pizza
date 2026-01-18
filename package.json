@@ -15,7 +15,7 @@
     "postinstall": "prisma generate"
   },
   "prisma": {
-    "seed": "ts-node --project prisma/tsconfig.json prisma/seed.ts"
+    "seed": "npx ts-node --project prisma/tsconfig.json prisma/seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

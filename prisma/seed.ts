@@ -172,6 +172,52 @@ async function up() {
       },
     },
   });
+   await prisma.story.createMany({
+    data: [
+      {
+        previewImageUrl: '/story1.png',
+      },
+      {
+        previewImageUrl: '/story2.png',
+      },
+      {
+        previewImageUrl: '/story3.png',
+      },
+      {
+        previewImageUrl: '/story4.png',
+      },
+      {
+        previewImageUrl: '/story5.png',
+      },
+      {
+        previewImageUrl: '/story6.png',
+      },
+    ],
+  });
+   await prisma.storyItem.createMany({
+    data: [
+      {
+        storyId: 1,
+        sourceUrl: '/story-item1.png',
+      },
+      {
+        storyId: 1,
+        sourceUrl: '/story-item2.png',
+      },
+      {
+        storyId: 1,
+        sourceUrl: '/story-item3.png',
+      },
+      {
+        storyId: 1,
+        sourceUrl: '/story-item4.png',
+      },
+      {
+        storyId: 1,
+        sourceUrl: '/story-item5.png',
+      },
+    ],
+  });
 }
 
 async function down() {
@@ -198,22 +244,17 @@ async function main() {
   try {
     await down();
     await up();
-    console.log('Seed completed successfully!');
   } catch (e) {
-    console.error('Seed failed:', e);
-    throw e;
+    console.error(e);
   }
 }
 
-console.log('Starting seed...');
 main()
   .then(async () => {
-    console.log('Seed finished, disconnecting...');
     await prisma.$disconnect();
-    console.log('Disconnected from database');
   })
   .catch(async (e) => {
-    console.error('Seed error:', e);
+    console.error(e);
     await prisma.$disconnect();
     process.exit(1);
   });

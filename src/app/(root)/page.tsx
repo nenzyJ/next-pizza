@@ -4,6 +4,7 @@ import { ProductsGroupList } from "@/components/shared/ProductsGroupList";
 import React, { Suspense } from "react";
 import { prisma } from "../../../prisma/prisma";
 import { findPizzas, GetSearchPizzasParams } from "@/lib/find-pizzas";
+import { Stories } from "@/components/shared/Stories";
 
 export default async function page({searchParams}: {searchParams: Promise<GetSearchPizzasParams>}) {
   const params = await searchParams;
@@ -18,6 +19,7 @@ export default async function page({searchParams}: {searchParams: Promise<GetSea
           (category) => category.products.length > 0
         )}
       />
+      <Stories/>
       <Container className="mt-5 md:mt-10">
         <div className="flex gap-8 lg:gap-[80px]">
           {/* Filter - Hidden on mobile */}
