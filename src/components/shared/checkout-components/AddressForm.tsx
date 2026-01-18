@@ -2,7 +2,6 @@
 
 import { Textarea } from "@/components/ui/textarea";
 import { WhiteBlock } from "../WhiteBlock";
-import { Input } from "@/components/ui/input";
 import { FormInput } from "../form/FormInput";
 import { useFormContext } from "react-hook-form";
 import { useState } from "react";
