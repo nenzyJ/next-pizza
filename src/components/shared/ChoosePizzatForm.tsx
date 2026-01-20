@@ -67,7 +67,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
           />
         </div>
 
-        <div className="bg-gray-50 p-5 rounded-md max-h-[250px] md:max-h-[none] md:h-[420px] overflow-auto scrollbar mt-5">
+        <div className="bg-gray-50 p-5 rounded-md max-h-[200px] md:max-h-[none] md:h-[370px] overflow-auto scrollbar mt-5">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {ingredients.map((ingredient) => (
               <IngredientList
@@ -85,7 +85,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
         <Button
           loading={loading}
           onClick={handleClickAdd}
-          className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10"
+          className="h-[55px] px-10 text-base rounded-[18px] w-full mt-5"
         >
           Add to cart for {totalPrice} $
         </Button>
