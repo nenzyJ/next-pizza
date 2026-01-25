@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "@/app/globals.css";
-import toast, { Toaster } from 'react-hot-toast';
 import { Providers } from "@/components/shared/Providers";
 
 const nunito = Nunito({
@@ -11,7 +10,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Pizza DOVAS",
+  title: "Nenzy Pizza",
   description: "The best pizza in the universe",
 };
 
