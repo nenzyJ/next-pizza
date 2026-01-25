@@ -12,6 +12,9 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: "Nenzy Pizza",
   description: "The best pizza in the universe",
+  icons: {
+    icon: "/favicon-logo.svg",
+  },
 };
 
 export default function GlobalLayout({
