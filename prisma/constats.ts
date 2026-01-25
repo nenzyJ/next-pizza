@@ -99,12 +99,12 @@ export const _ingredients = [
 export const products = [
   {
     name: "Omelette with Ham & Mushrooms",
-    imageUrl: "/Omelette-Ham-Mushrooms.webp",
+    imageUrl: "/Omelette-Ham-Mushrooms.png",
     categoryId: 2,
   },
   {
     name: "Omelette with Pepperoni",
-    imageUrl: "/Omelette-Pepperoni.webp",
+    imageUrl: "/Omelette-Pepperoni.png",
     categoryId: 2,
   },
   {
@@ -144,22 +144,22 @@ export const products = [
   },
   {
     name: "Caramel Apple Milkshake",
-    imageUrl: "/Caramel-Apple-Milkshake.webp",
+    imageUrl: "/Caramel-Apple-Milkshake.png",
     categoryId: 4,
   },
   {
     name: "Oreo Milkshake",
-    imageUrl: "/Oreo-Milkshake.webp",
+    imageUrl: "/Oreo-Milkshake.png",
     categoryId: 4,
   },
   {
     name: "Classic Milkshake 👶",
-    imageUrl: "/Classic-Milkshake.webp",
+    imageUrl: "/Classic-Milkshake.png",
     categoryId: 4,
   },
   {
     name: "Irish Cappuccino",
-    imageUrl: "/Irish-Cappuccino.webp",
+    imageUrl: "/Irish-Cappuccino.png",
     categoryId: 5,
   },
   {
