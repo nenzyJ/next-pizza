@@ -29,7 +29,7 @@ export const Header: React.FC<Props> = ({
           <div className="flex items-center gap-2 md:gap-4">
             <Image src="/pizza-logo.svg" alt="Logo" width={28} height={28} className="md:w-[35px] md:h-[35px]" />
             <div>
-              <h1 className="text-lg md:text-2xl uppercase font-black">Dovas Pizza</h1>
+              <h1 className="text-lg md:text-2xl uppercase font-black">Nenzy Pizza</h1>
               <p className="text-xs md:text-sm text-gray-400 leading-3 hidden sm:block">
                 It doesn't get any tastier than this.
               </p>

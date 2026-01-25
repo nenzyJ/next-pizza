@@ -2,7 +2,6 @@ import { Container, SortPopup, Title, TopBar } from "@/components/shared";
 import { Filters } from "@/components/shared/Filters";
 import { ProductsGroupList } from "@/components/shared/ProductsGroupList";
 import React, { Suspense } from "react";
-import { prisma } from "../../../prisma/prisma";
 import { findPizzas, GetSearchPizzasParams } from "@/lib/find-pizzas";
 import { Stories } from "@/components/shared/Stories";
 

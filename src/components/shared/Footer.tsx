@@ -78,7 +78,7 @@ export const Footer: React.FC<Props> = ({ className }) => {
       {/* Bottom Bar - Full Width Border */}
       <div className="border-t border-gray-100 py-8">
          <Container className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
-           <p>© {new Date().getFullYear()} Dovas Pizza. All rights reserved.</p>
+           <p>© {new Date().getFullYear()} Nenzy Pizza. All rights reserved.</p>
            <div className="flex gap-6">
               <Link href="#" className="hover:text-primary">Privacy Policy</Link>
               <Link href="#" className="hover:text-primary">Terms of Service</Link>
