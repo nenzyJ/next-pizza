@@ -18,7 +18,7 @@ export const Footer: React.FC<Props> = ({ className }) => {
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-2">
               <Image src="/pizza-logo.svg" alt="Logo" width={35} height={35} />
-              <h1 className="text-xl uppercase font-black">Dovas Pizza</h1>
+              <h1 className="text-xl uppercase font-black">Nenzy Pizza</h1>
             </Link>
             <p className="text-gray-500">
               Taste that brings us together. Fresh ingredients, unique recipes, and fast delivery.
